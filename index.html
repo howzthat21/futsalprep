@@ -10,11 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/solarized.css">
     
-    <!-- TailwindCSS (via CDN for simplicity) -->
+    <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* Custom styles for better presentation */
         .reveal section img {
             max-width: 100%;
             height: auto;
@@ -26,45 +25,34 @@
 <body>
     <div class="reveal">
         <div class="slides">
-            <!-- First slide with a title -->
             <section class="text-center">
                 <h1 class="text-3xl font-bold text-blue-600 mb-6">Welcome to Futsal Prep</h1>
                 <p class="text-xl text-gray-700">This is a simple test with Tailwind and Reveal.js.</p>
             </section>
 
-            <!-- Second slide with PNG image -->
             <section class="flex justify-center items-center">
                 <img src="futsalprep.png" alt="Futsal Prep Image" class="rounded-lg shadow-lg max-w-full" />
             </section>
-			<section class="p-8">
+
+            <section class="p-8">
                 <h2 class="text-2xl font-semibold text-center text-blue-500 mb-6">Submit Your Details</h2>
                 
-                <form id="futsalForm" action="https://your-google-form-endpoint" method="POST" class="max-w-lg mx-auto">
-                    <!-- Name input -->
-                    <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                        <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
+                <form id="futsalForm" class="max-w-lg mx-auto">
+                    
 
-                    <!-- Email input -->
-                    <div class="mb-4">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                        <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-
-                    <!-- Message input -->
                     <div class="mb-6">
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <input type="text" id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500"></input=>
                     </div>
 
-                    <!-- Submit button -->
                     <div class="text-center">
-                        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 focus:ring-blue-500">
                             Submit
                         </button>
                     </div>
                 </form>
+
+                <p id="form-status" class="text-center mt-4 text-green-500 hidden">Form submitted successfully!</p>
             </section>
         </div>
     </div>
@@ -72,13 +60,33 @@
     <!-- Reveal.js Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
     <script>
-        // Initialize Reveal.js
         Reveal.initialize({
             controls: true,
             progress: true,
             slideNumber: true,
             history: true,
             center: true
+        });
+
+        // Google Form Submission
+        document.getElementById("futsalForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Replace with actual Google Form ID and Entry IDs
+            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSdQU7v7ndOQ9lQo3uYeycKsqGh1_r3UEBNLaMLojZfq17_Feg/formResponse";
+            const formData = new FormData();
+            
+            formData.append("entry.778044589", document.getElementById("message").value);
+
+            fetch(googleFormURL, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            }).then(() => {
+                document.getElementById("form-status").classList.remove("hidden");
+            }).catch(error => {
+                console.error("Error submitting form:", error);
+            });
         });
     </script>
 </body>
