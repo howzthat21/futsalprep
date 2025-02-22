@@ -3,21 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+
     <title>Futsal Prep Test</title>
 
     <!-- Reveal.js -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/solarized.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/blood.css">
     
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        .reveal section img {
+        .reveal .slides section img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
+            overflow-y: auto;
+            padding: 10px;
+            max-height: 80vh;
         }
     </style>
 </head>
@@ -30,8 +34,25 @@
                 <p class="text-xl text-gray-700">This is a simple test with Tailwind and Reveal.js.</p>
             </section>
 
-            <section class="flex justify-center items-center">
-                <img src="futsalprep.png" alt="Futsal Prep Image" class="rounded-lg shadow-lg max-w-full" />
+            <!-- First Slide -->
+            <section class="text-center">
+                <h1 class="text-4xl font-bold text-white mb-6">Are you a futsal player?</h1>
+                <div class="flex justify-center gap-4">
+                    <button class="btn" onclick="handleYes()">Yes</button>
+                    <button class="btn" onclick="handleNo()">No</button>
+                </div>
+            </section>
+            
+            <!-- If Yes -->
+            <section class="text-center">
+                <h2 class="text-3xl text-white">Great! Let's improve your game.</h2>
+                <p class="text-lg text-gray-400">Get tips, drills, and match strategies.</p>
+            </section>
+            
+            <!-- If No -->
+            <section class="text-center" id="no-slide" style="display:none;">
+                <h2 class="text-3xl text-white">No worries! It's never too late to start.</h2>
+                <p class="text-lg text-gray-400">Join a futsal community and start playing!</p>
             </section>
 
             <section class="p-8">
@@ -56,6 +77,19 @@
             </section>
         </div>
     </div>
+    <script>
+        function handleYes(){
+            const noSlide= document.getElementById("no-slide");
+            if(noSlide){
+                noSlide.remove();
+            }
+            Reveal.next();
+        }
+
+        function handleNo(){
+            Reveal.slide(3);
+        }
+    </script>
 
     <!-- Reveal.js Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
@@ -65,9 +99,12 @@
             progress: true,
             slideNumber: true,
             history: true,
-            center: true
-        });
+            center: true,
+            transition: 'slide',
+            scroll:true
 
+        });
+        
         // Google Form Submission
         document.getElementById("futsalForm").addEventListener("submit", function(event) {
             event.preventDefault();
