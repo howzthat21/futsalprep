@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futsal Survey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Button Styles */
+        .button {
+            width: 150px;
+            height: 50px;
+            background: linear-gradient(45deg, #FF013C, #00E6F6);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            padding: 12px;
+            transition: 0.3s;
+            border-radius: 8px;
+        }
+
+        .button:hover {
+            background: linear-gradient(45deg, #00E6F6, #FF013C);
+            box-shadow: 0px 0px 10px white;
+        }
+    </style>
+</head>
+<body class="bg-black text-white text-center">
+    <h1 class="text-4xl font-bold my-6">Are you a futsal player?</h1>
+
+    <!-- Survey Buttons -->
+    <div>
+        <button class="button" onclick="appendDataFruit('apple banana')">apple</button>
+        <button class="button" onclick="appendDataFruit('banana')">banana</button>
+        <button class="button" onclick="appendDataVehicle('car')">car</button>
+        <button class="button" onclick="appendDataVehicle('bike')">bike</button>
+    </div>
+
+    <button class="button mt-6" onclick="submitData()">Submit</button>
+    <p id="form-status" class="hidden text-green-400 mt-4">Form submitted successfully!</p>
+
+    <script>
+        // Store user selection
+        let formData = {};
+
+        function appendDataFruit(answer) {
+            formData["entry.2050035359"] = answer; // Replace with actual Google Forms entry.xxx ID
+            console.log("Stored Data:", formData); // Debugging
+        }
+        function appendDataVehicle(answerr){
+            formData["entry.365235830"]= answerr;
+            console.log("stored data: " ,formData);
+        }
+
+        function submitData() {
+            if (!formData["entry.365235830"]) {
+                alert("Please select an option!");
+                return;
+            }
+
+            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSeeK-_Vm47N1GVGs7-SJ0jA4o1jvG6vxMKrg-KI9FaEgzutaw/formResponse"; // Replace with actual Google Forms URL
+
+            const form = new FormData();
+            form.append("entry.2050035359", formData["entry.2050035359"]);
+            form.append("entry.365235830", formData["entry.365235830"]);
+
+            fetch(googleFormURL, {
+                method: "POST",
+                body: form,
+                mode: "no-cors"
+            }).then(() => {
+                document.getElementById("form-status").classList.remove("hidden");
+            }).catch(error => {
+                console.error("Error submitting form:", error);
+            });
+        }
+    </script>
+</body>
+</html>

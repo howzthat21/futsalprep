@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Futsal Prep Test</title>
 
     <!-- Reveal.js -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/blood.css">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/blood.css" id="theme">
+    <link rel="stylesheet" href="styles.css" id="theme">
     
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,9 +20,7 @@
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            overflow-y: auto;
             padding: 10px;
-            max-height: 80vh;
         }
     </style>
 </head>
@@ -33,99 +32,136 @@
                 <h1 class="text-3xl font-bold text-blue-600 mb-6">Welcome to Futsal Prep</h1>
                 <p class="text-xl text-gray-700">This is a simple test with Tailwind and Reveal.js.</p>
             </section>
-
-            <!-- First Slide -->
+            
+            <!-- Question 1 -->
             <section class="text-center">
-                <h1 class="text-4xl font-bold text-white mb-6">Are you a futsal player?</h1>
-                <div class="flex justify-center gap-4">
-                    <button class="btn" onclick="handleYes()">Yes</button>
-                    <button class="btn" onclick="handleNo()">No</button>
+                <h2 class="text-3xl text-white">How often do you play futsal?</h2>
+                <div class="flex flex-col justify-center items-center mt-4">
+                    <button class="button-49" onclick="appendAnswer('entry.94501124', 'Daily')">Daily</button>
+                    <button class="button-49" onclick="appendAnswer('entry.94501124', 'Weekly')">Weekly</button>
+                    <button class="button-49" onclick="appendAnswer('entry.94501124', 'NotQuiteOften')">Not quite often</button>
+                    <button class="button-49" onclick="appendAnswer('entry.94501124', 'Never')">Never</button>
                 </div>
             </section>
-            
-            <!-- If Yes -->
+
+            <!-- Question 2 -->
             <section class="text-center">
-                <h2 class="text-3xl text-white">Great! Let's improve your game.</h2>
-                <p class="text-lg text-gray-400">Get tips, drills, and match strategies.</p>
+                <h2 class="text-3xl text-white">What is the most important factor when joining a match?</h2>
+                <div class="flex flex-col justify-center items-center mt-4">
+                    <button class="button-49" onclick="appendAnswer('entry.1422742349', 'Location')">Futsal Location</button>
+                    <button class="button-49" onclick="appendAnswer('entry.1422742349', 'Time')">Time</button>
+                    <button class="button-49" onclick="appendAnswer('entry.1422742349', 'Cost')">Cost</button>
+                    <button class="button-49" onclick="appendAnswer('entry.1422742349', 'Other')">Other</button>
+                </div>
             </section>
-            
-            <!-- If No -->
-            <section class="text-center" id="no-slide" style="display:none;">
-                <h2 class="text-3xl text-white">No worries! It's never too late to start.</h2>
-                <p class="text-lg text-gray-400">Join a futsal community and start playing!</p>
+
+            <!-- Question 3 -->
+            <section class="text-center">
+                <h2 class="text-3xl text-white">Are you a casual or competitive player?</h2>
+                <div class="flex flex-col justify-center items-center mt-4">
+                    <button class="button-49" onclick="appendAnswer('entry.491147846', 'Casual')">Casual</button>
+                    <button class="button-49" onclick="appendAnswer('entry.491147846', 'Competitive')">Competitive</button>
+                    <button class="button-49" onclick="appendAnswer('entry.491147846', 'Both')">Both</button>
+                </div>
             </section>
 
-            <section class="p-8">
-                <h2 class="text-2xl font-semibold text-center text-blue-500 mb-6">Submit Your Details</h2>
-                
-                <form id="futsalForm" class="max-w-lg mx-auto">
-                    
+            <!-- Question 4 -->
+            <section class="text-center">
+                <h2 class="text-3xl text-white">Would you play solo with 9 other players?</h2>
+                <div class="flex flex-col justify-center items-center mt-4">
+                    <button class="button-49" onclick="appendAnswer('entry.607302441', 'Yes')">Yes</button>
+                    <button class="button-49" onclick="appendAnswer('entry.607302441', 'No')">No</button>
+                </div>
+            </section>
 
-                    <div class="mb-6">
-                        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <input type="text" id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500"></input=>
-                    </div>
+            <!-- Question 5 -->
+            <section class="text-center">
+                <h2 class="text-3xl text-white">Would an online futsal platform be useful?</h2>
+                <div class="flex flex-col justify-center items-center mt-4">
+                    <button class="button-49" onclick="appendAnswer('entry.1324256515', 'GoodIdea')">Good idea</button>
+                    <button class="button-49" onclick="appendAnswer('entry.1324256515', 'DoNotCare')">Don't care</button>
+                    <button class="button-49" onclick="appendAnswer('entry.1324256515', 'WorstIdea')">Worst idea</button>
+                </div>
+            </section>
 
-                    <div class="text-center">
-                        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 focus:ring-blue-500">
-                            Submit
-                        </button>
-                    </div>
-                </form>
+            <!-- Submit Section -->
+            <section class="text-center">
+                <h2 class="text-3xl text-white">Almost Complete...</h2>
+                <div class="flex flex-col justify-center items-center mt-4">
+                    <button class="button-49" onclick="submitData()">Submit</button>
+                    <p id="form-status" class="hidden text-green-400 mt-4">Form submitted successfully!</p>
+                </div>
+            </section>
 
-                <p id="form-status" class="text-center mt-4 text-green-500 hidden">Form submitted successfully!</p>
+            <section class="text-center">
+                <h2 class="text-3xl text-white">Thank you for your time.</h2>
             </section>
         </div>
     </div>
-    <script>
-        function handleYes(){
-            const noSlide= document.getElementById("no-slide");
-            if(noSlide){
-                noSlide.remove();
-            }
-            Reveal.next();
-        }
-
-        function handleNo(){
-            Reveal.slide(3);
-        }
-    </script>
 
     <!-- Reveal.js Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+
     <script>
         Reveal.initialize({
-            controls: true,
+            controls: false,
             progress: true,
-            slideNumber: true,
-            history: true,
             center: true,
+            hash: true,
+            touch: false,
+            keyboard: true,
+            history: false,
             transition: 'slide',
-            scroll:true
-
+            plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
         });
-        
-        // Google Form Submission
-        document.getElementById("futsalForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            // Replace with actual Google Form ID and Entry IDs
-            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSdQU7v7ndOQ9lQo3uYeycKsqGh1_r3UEBNLaMLojZfq17_Feg/formResponse";
-            const formData = new FormData();
-            
-            formData.append("entry.778044589", document.getElementById("message").value);
-
+    
+        let formData = {};
+    
+        function appendAnswer(entryID, answer) {
+            formData[entryID] = encodeURIComponent(answer); // Encode user input
+            console.log("Stored Data:", formData);
+            Reveal.next();
+        }
+    
+        function submitData() {
+            const requiredFields = ["entry.94501124", "entry.1422742349", "entry.491147846", "entry.607302441", "entry.1324256515"];
+    
+            for (let field of requiredFields) {
+                if (!formData[field]) {
+                    alert("Please answer all questions before submitting.");
+                    return;
+                }
+            }
+    
+            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSfSJwLdSWXe5Iw9zGZCXgbhw6dbmWmnBrIoLU2Nwd9Y5WlTPg/formResponse";
+    
+            // Encode and format form data into URL parameters
+            let formParams = new URLSearchParams();
+            for (let key in formData) {
+                formParams.append(key, formData[key]);
+            }
+    
             fetch(googleFormURL, {
                 method: "POST",
-                body: formData,
+                body: formParams,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded" // Important for URL encoding
+                },
                 mode: "no-cors"
             }).then(() => {
                 document.getElementById("form-status").classList.remove("hidden");
+                Reveal.next();
             }).catch(error => {
                 console.error("Error submitting form:", error);
             });
-        });
+        }
     </script>
-</body>
+    
 
+</body>
 </html>
