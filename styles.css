@@ -8,9 +8,9 @@ html, body {
 /* CSS */
 .button-49,
 .button-49:after {
-  width: 150px;
+  width: 500px;
   
-  height: 76px;
+  height: 100px;
   line-height: 78px;
   font-size: 30px;
   font-family: 'Bebas Neue', sans-serif;
@@ -99,13 +99,13 @@ html, body {
   }
 }
 
-@media (min-width: 768px) {
-  .button-49,
-  .button-49:after {
-    width: 200px;
-    height: 86px;
-    line-height: 88px;
-  }
+@media (min-width: 768px) { 
+  .button-49, .button-49:after { 
+      width: 300px; /* Increased size for larger screens */
+      height: 110px;
+      line-height: 112px;
+      font-size: 40px; 
+  } 
 }
 
 .radio-container {
